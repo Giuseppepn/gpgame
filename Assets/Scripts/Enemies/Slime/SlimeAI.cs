@@ -49,7 +49,7 @@ public class EnemyAI : MonoBehaviour
             if(state  == State.Waiting)
             {
                 animator.SetBool("isMoving", false);
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(1f);
                 state = State.Roaming;
             }
             else if (state == State.Roaming)
@@ -57,7 +57,7 @@ public class EnemyAI : MonoBehaviour
                 animator.SetBool("isMoving", true);
                 Vector2 roamPosition = GetRoamingPosition();
                 slimeController.MoveTo(roamPosition);
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(1f);
                 state = State.Waiting;
             }
         }

@@ -6513,6 +6513,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3200800019350339613, guid: 9b121e2dc66010f46b191618e3381ce7, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3956674233773254273, guid: 9b121e2dc66010f46b191618e3381ce7, type: 3}
       propertyPath: m_Name
       value: SlimeV2

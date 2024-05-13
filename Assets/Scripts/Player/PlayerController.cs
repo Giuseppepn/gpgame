@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 6f;
-    [SerializeField] private static int coins = 0;
+    [SerializeField] public static int coins = 0;
     private PlayerInputs playerControls;
     private Vector2 movement;
     private Rigidbody2D rb;
@@ -32,6 +33,10 @@ public class PlayerController : MonoBehaviour
     {
        
         PlayerInput();
+        if(coins == 6)
+        {
+            SceneManager.LoadScene(4);
+        }
     }
 
     private void FixedUpdate()

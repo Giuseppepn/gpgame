@@ -5,10 +5,11 @@ using UnityEditor.Build.Content;
 using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] int maxHP = 3;
+    [SerializeField] public static int maxHP = 3;
     [SerializeField] private float damageRecoveryTime = 1f;
     [SerializeField] private Color damageColor;
     [SerializeField] private float restoreDefaultColorTime = .2f;
@@ -57,8 +58,9 @@ public class PlayerHealth : MonoBehaviour
             if(currentHP == 0)
             {
 
-                Debug.Log("Il player è morto! aveva con se monete: " + playerController.GetCoins());
+            Debug.Log("Il player è morto! aveva con se monete: " + playerController.GetCoins());
             StartCoroutine(Upload());
+            SceneManager.LoadScene(5);
         }
     }
 
