@@ -13,6 +13,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float damageRecoveryTime = 1f;
     [SerializeField] private Color damageColor;
     [SerializeField] private float restoreDefaultColorTime = .2f;
+    public GameObject timerObject;
     private Color defaultColor;
     private SpriteRenderer spriteRenderer;
     private PlayerController playerController;
@@ -57,8 +58,12 @@ public class PlayerHealth : MonoBehaviour
 
             if(currentHP == 0)
             {
-
-            Debug.Log("Il player è morto! aveva con se monete: " + playerController.GetCoins());
+            TimerScript timerScript = timerObject.GetComponent<TimerScript>();
+            if (timerScript != null)
+            {
+                timerScript.StopTimer();
+            }
+            Debug.Log("Il player è morto! aveva con se monete: " + playerController.GetCoins() + " Tempo: " + timerScript.timer);
             StartCoroutine(Upload());
             SceneManager.LoadScene(5);
         }

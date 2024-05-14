@@ -200,3 +200,4 @@ MonoBehaviour:
   damageRecoveryTime: 1
   damageColor: {r: 0, g: 0, b: 0, a: 0}
   restoreDefaultColorTime: 0.2
+  timerObject: {fileID: 5217445810175166785, guid: 3c38884f0c568824a8831a1854308008, type: 3}
