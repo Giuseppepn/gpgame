@@ -13,11 +13,12 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float damageRecoveryTime = 1f;
     [SerializeField] private Color damageColor;
     [SerializeField] private float restoreDefaultColorTime = .2f;
+    [SerializeField] public static int currentHP;
+
     public GameObject timerObject;
     private Color defaultColor;
     private SpriteRenderer spriteRenderer;
     private PlayerController playerController;
-    private int currentHP;
     private bool canTakeDamage = true;
     void Start()
     {
@@ -25,6 +26,11 @@ public class PlayerHealth : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentHP = maxHP;
         defaultColor = spriteRenderer.color;
+    }
+
+    public int GetHP()
+    {
+        return currentHP;
     }
 
     // Update is called once per frame
@@ -63,8 +69,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 timerScript.StopTimer();
             }
-            Debug.Log("Il player è morto! aveva con se monete: " + playerController.GetCoins() + " Tempo: " + timerScript.timer);
-            StartCoroutine(Upload());
+            Debug.Log("Il player è morto! aveva con se monete: " + playerController.GetCoins() + " Tempo: " + timerScript.GetTime());
             SceneManager.LoadScene(5);
         }
     }
@@ -75,44 +80,6 @@ public class PlayerHealth : MonoBehaviour
         canTakeDamage = true;
     }
 
-    [System.Serializable]
-    public class ScoreData
-    {
-        public string username;
-        public int coins;
-    }
-
-    IEnumerator Upload()
-    {
-        string username = StartGame.username;
-        int coins = playerController.GetCoins();
-
-        // Create a ScoreData object
-        ScoreData scoreData = new ScoreData();
-        scoreData.username = username;
-        scoreData.coins = coins;
-
-        // Convert ScoreData object to JSON string
-        string jsonData = JsonUtility.ToJson(scoreData);
-
-        // Set request headers
-        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
-        UnityWebRequest www = new UnityWebRequest("http://localhost:3000/api/score", "POST");
-        www.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        www.SetRequestHeader("Content-Type", "application/json");
-
-        // Make the POST request
-        yield return www.SendWebRequest();
-
-        if (www.result == UnityWebRequest.Result.Success)
-        {
-            Debug.Log("Success!");
-        }
-        else
-        {
-            Debug.LogError("Error: " + www.error);
-        }
-    }
 
 
 

@@ -29,18 +29,7 @@ public class StartGame : MonoBehaviour
     public void ResetGame()
     {
         username = null;
-        timer = 0;
         SceneManager.LoadScene(0);
     }
 
-    public void Start()
-    {
-        timer = 0;
-    }
-
-    private void Update()
-    {
-        timer += Time.deltaTime;
-        Debug.Log(timer);
-    }
 }

@@ -1,12 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TimerScript : MonoBehaviour
 {
-    public bool timerIsOn = false;
-    public float timer = 0.0f;
-    // Update is called once per frame
+    public static bool timerIsOn = false;
+    public static float timer = 0.0f;
+    private static TimerScript instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        Time.timeScale = 1f;  
+    }
+
     void Update()
     {
         if (timerIsOn)
@@ -22,11 +39,11 @@ public class TimerScript : MonoBehaviour
 
     public void StopTimer()
     {
-        timerIsOn= false;
+        timerIsOn = false;
     }
 
-    private void Awake()
+    public float GetTime()
     {
-        DontDestroyOnLoad(gameObject);
+        return timer;
     }
 }

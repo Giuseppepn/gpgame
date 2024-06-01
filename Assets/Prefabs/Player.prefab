@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 6
+  timerObject: {fileID: 5217445810175166785, guid: 3c38884f0c568824a8831a1854308008, type: 3}
 --- !u!114 &578024919346905199
 MonoBehaviour:
   m_ObjectHideFlags: 0

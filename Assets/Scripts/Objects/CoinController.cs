@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class coinController : MonoBehaviour
+public class CoinController : MonoBehaviour
 {
     CircleCollider2D cd;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnAnimation());
         cd.GetComponent<CircleCollider2D>();
+
+        if (cd == null)
+        {
+            Debug.LogError("Errore!");
+            return;
+        }
+
+        StartCoroutine(SpawnAnimation());
     }
 
 

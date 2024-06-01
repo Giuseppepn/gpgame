@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
@@ -13,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator myAnimator;
     private SpriteRenderer mySpriteRender;
+    public GameObject timerObject;
 
 
     private void Awake()
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour
         if(coins == 6)
         {
             SceneManager.LoadScene(4);
+            StartCoroutine(Upload());
         }
     }
 
@@ -87,6 +91,51 @@ public class PlayerController : MonoBehaviour
     public int GetCoins()
     {
         return coins;
+    }
+
+
+    [System.Serializable]
+    public class ScoreData
+    {
+        public string username;
+        public float time;
+    }
+
+    IEnumerator Upload()
+    {
+        TimerScript timerScript = timerObject.GetComponent<TimerScript>();
+        string username = StartGame.username;
+        if(username == null)
+        {
+            username = "Anonymous";
+        }
+        float time = timerScript.GetTime();
+
+        // Create a ScoreData object
+        ScoreData scoreData = new ScoreData();
+        scoreData.username = username;
+        scoreData.time = time;
+
+        // Convert ScoreData object to JSON string
+        string jsonData = JsonUtility.ToJson(scoreData);
+
+        // Set request headers
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
+        UnityWebRequest www = new UnityWebRequest("http://localhost:3000/api/score", "POST");
+        www.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        www.SetRequestHeader("Content-Type", "application/json");
+
+        // Make the POST request
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log("Success!");
+        }
+        else
+        {
+            Debug.LogError("Error: " + www.error);
+        }
     }
 
 
