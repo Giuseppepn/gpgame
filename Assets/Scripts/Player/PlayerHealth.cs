@@ -24,7 +24,14 @@ public class PlayerHealth : MonoBehaviour
     {
         playerController = GetComponent<PlayerController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        currentHP = maxHP;
+        if (PlayerPrefs.GetInt("HP") != 0)
+        {
+            currentHP = PlayerPrefs.GetInt("HP");
+        }
+        else
+        {
+            currentHP = maxHP;
+        }
         defaultColor = spriteRenderer.color;
     }
 
