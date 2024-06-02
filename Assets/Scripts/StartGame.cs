@@ -29,6 +29,8 @@ public class StartGame : MonoBehaviour
     public void ResetGame()
     {
         username = null;
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
         SceneManager.LoadScene(0);
     }
 

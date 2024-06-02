@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2055102311959635375}
-  - component: {fileID: 529264835856127375}
   - component: {fileID: 2055102311959635368}
   - component: {fileID: 1749270117907678243}
   - component: {fileID: 2055102311959635374}
@@ -36,18 +35,6 @@ Transform:
   - {fileID: 2055102312182832481}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &529264835856127375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2055102311959635369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eb9e473d03b82d49b1dc2fe15aa5920, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &2055102311959635368
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -113,6 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chestOpened: {fileID: 21300040, guid: 29c9cded5e558164aaf8c9bf08aa1510, type: 3}
+  chestClosed: {fileID: 0}
+  Coin: {fileID: 0}
 --- !u!61 &2055102311959635374
 BoxCollider2D:
   m_ObjectHideFlags: 0

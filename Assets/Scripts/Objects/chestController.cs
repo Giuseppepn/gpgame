@@ -29,6 +29,11 @@ public class ChestController : MonoBehaviour
         }
     }
 
+    public void OpenChest()
+    {
+
+    }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
 

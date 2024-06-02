@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviour
         PlayerInput();
         if(coins == 6)
         {
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.Save();
+            coins = 0;
             SceneManager.LoadScene(4);
             StartCoroutine(Upload());
         }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class CoinController : MonoBehaviour
 {
     CircleCollider2D cd;
-    // Start is called before the first frame update
+
     void Start()
     {
         cd.GetComponent<CircleCollider2D>();
